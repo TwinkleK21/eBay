@@ -1,0 +1,60 @@
+import java.util.*;
+class Playground {
+    public static void main(String[] args){
+        
+        Scanner scan = new Scanner(System.in);
+        
+        int numOfRow = scan.nextInt();
+        int numOfCol = scan.nextInt();
+        
+        int matrix[][] = new int[numOfRow][numOfCol];
+        for(int i  = 0; i < numOfRow; i++){
+            for(int j = 0; j < numOfCol; j++){
+                matrix[i][j] = scan.nextInt();
+            }
+        }
+        
+        int[] result = spiralTraverse(matrix, numOfRow, numOfCol);
+        for(int i = 0; i < result.length; i++){
+            System.out.println(result[i]);
+        }
+    }
+    
+    
+    public static int[] spiralTraverse(int[][] nums, int numOfRow, int numOfCol){
+        int up = 0;
+        int down = numOfRow-1;
+        int left = 0;
+        int right = numOfCol-1;
+        List<Integer> result = new ArrayList<>();
+        while(result.size() < numOfRow * numOfCol-1){
+            for(int i = left; i <= right; i++){
+                result.add(nums[i][up]);
+            }
+            up++;
+            if(up > down){break;}
+            for(int i = up; i <= down; i++){
+                result.add(nums[right][i]);
+            }
+            right--;
+            if(right< left){break;}
+            for(int i = right; i >= left; i--){
+                result.add(nums[i][down]);
+            }
+            down--;
+            if(down < up){break;}
+            for(int i = down; i >= up; i--){
+                result.add(nums[left][i]);
+            }
+            left++;
+            if(left > right){break;}
+            }
+            int[] res = new int[result.size()];
+            int i = 0;
+            for(int temp : result){
+                res[i] = temp;
+                i++;
+            }
+            return res;
+        }
+}
