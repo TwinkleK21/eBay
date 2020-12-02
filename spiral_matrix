@@ -27,24 +27,24 @@ class Playground {
         int left = 0;
         int right = numOfCol-1;
         List<Integer> result = new ArrayList<>();
-        while(result.size() < numOfRow * numOfCol-1){
+        while(result.size() < numOfRow * numOfCol){
             for(int i = left; i <= right; i++){
-                result.add(nums[i][up]);
+                result.add(nums[up][i]);
             }
             up++;
             if(up > down){break;}
             for(int i = up; i <= down; i++){
-                result.add(nums[right][i]);
+                result.add(nums[i][right]);
             }
             right--;
             if(right< left){break;}
             for(int i = right; i >= left; i--){
-                result.add(nums[i][down]);
+                result.add(nums[down][i]);
             }
             down--;
             if(down < up){break;}
             for(int i = down; i >= up; i--){
-                result.add(nums[left][i]);
+                result.add(nums[i][left]);
             }
             left++;
             if(left > right){break;}
