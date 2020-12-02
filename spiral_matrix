@@ -13,7 +13,9 @@ class Playground {
                 matrix[i][j] = scan.nextInt();
             }
         }
-        
+        if(matrix == null || numOfRow == 0 || numOfCol == 0){
+            return null;
+        }
         int[] result = spiralTraverse(matrix, numOfRow, numOfCol);
         for(int i = 0; i < result.length; i++){
             System.out.println(result[i]);
