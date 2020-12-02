@@ -1,0 +1,50 @@
+import java.util.*;
+class Playground {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int nums[] = new int[size];
+        for(int i = 0; i < size; i++){
+            nums[i] = scan.nextInt();
+        }
+        
+        List<List<Integer>> result = threeSum(nums);
+        
+        for(int i = 0; i < result.size(); i++){
+            System.out.println();
+            for(int j = 0; j < result.get(0).size(); j++){
+                System.out.print(result.get(i).get(j));
+            }
+        }
+    }
+    
+    
+    public static List<List<Integer>> threeSum(int[] nums){
+        if(nums.length == 0 || nums == null){
+            return null;
+        }
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = 0; i < nums.length-2; i++){
+            int j = i+1;
+            int k = nums.length-1;
+            while(j < k){
+                if((nums[i] + nums[j] + nums[k]) == 0){
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    result.add(temp);
+                }
+                if((nums[i]+nums[j]+nums[k]) > 0){
+                    k--;
+                }
+                else{
+                    j++;
+                }
+            }
+        }
+        return result;
+    }
+    
+}
